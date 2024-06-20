@@ -103,22 +103,16 @@ impl eframe::App for MyApp {
 
             // Debug corner
             egui::SidePanel::right("Debug panel").show(ctx, |ui| {
-                // ui.label("Hello World!");
                 ui.add(egui::Checkbox::new(&mut self.debug.enabled, "Enable debug info"));
                 if self.debug.enabled == true {
                     // FPS
                     ui.add(Label::new(RichText::new(String::from(format!("FPS {:?}", self.debug.framerate))).monospace().font(self.debug.widget_font.clone())));
                     // Continuous render
                     ui.add(egui::Checkbox::new(&mut self.debug.continuous_render, RichText::new(String::from("Enable continuous rendering")).font(self.debug.widget_font.clone())));
-                    // debug text size
-                    // ui.add(egui::Slider::new(&mut self.debug.widget_font.size, 1.0..=48.0).text("Widget size"));
-
-                    // ui.put(widget_rect, Label::new(RichText::new(String::from(format!("FPS\t{:?}", self.framerate))).monospace().font(self.widget_font.clone())));
                 }
              });
 
             // File selection
-            // TODO: Fix formats other than .png not working
             if ui.button("Open file...").clicked() {
                 self.open_file_picker = true;
             }
@@ -153,17 +147,3 @@ impl eframe::App for MyApp {
         });
     }
 }
-
-
-// fn align_to_top_right(ctx: &egui::Context, widget_size: (f32, f32)) -> Rect {
-//     let screen_size = ctx.screen_rect();
-//     let widget_width = widget_size.0;
-//     let widget_height = widget_size.1;
-
-//     let top_right_x = screen_size.max.x - widget_width;
-//     let top_right_y = screen_size.min.y;
-
-//     let top_right = egui::Pos2::new(top_right_x, top_right_y);
-
-//     Rect::from_min_size(top_right, egui::Vec2::new(widget_width, widget_height))
-// }
